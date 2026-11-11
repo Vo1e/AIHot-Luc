@@ -15,12 +15,13 @@ export const SELECTION = {
    * 信源类别 → 门槛下限。分级只说明来源是不是官方、一手；有些官方信源的日常内容主要写给开发者或业内，
    * 读者要看的只是其中的大事，就在后台“信源”里给它一个类别，门槛抬到不低于这里的数。
    * 只抬不降：分级门槛本来就更高的（媒体）不受影响。没有类别的信源只按分级。
-   *   ecosystem 生态与基础设施：芯片与硬件、推理与云服务、模型托管、开发框架与工具链、安全研究厂商、工程与开发者博客
-   *   leaderboard 评测榜单：给各家模型跑分、排名的评测机构
+   *   broad-official 综合官方：官方但大部分内容与网通无关的源（Amazon 全球新闻、欧盟数字政策），只要其中的大事
+   *   standards 标准与认证：Wi-Fi Alliance 这类标准组织，日常多是会议、资源和认证说明
+   *   (阈值是起点，未用本行业的标注样本校准：攒够 100–200 条后用 scripts/eval-selection.ts 重跑再调。)
    */
   classes: {
-    ecosystem: { label: "生态与基础设施", threshold: 70 },
-    leaderboard: { label: "评测榜单", threshold: 76 },
+    "broad-official": { label: "综合官方", threshold: 72 },
+    standards: { label: "标准与认证", threshold: 68 },
   } as Record<string, { label: string; threshold: number }>,
   /**
    * 没入选、但平均分高于这个数的资料，也用精选的写法（内容理解：标题、摘要、推荐理由）来写，

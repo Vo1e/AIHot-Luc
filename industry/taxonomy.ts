@@ -1,4 +1,4 @@
-// 这个行业的分类体系：类别、标签词表、公司（主体）名录，以及防止张冠李戴的身份词典。
+// 这个行业（荷比卢家用网通与电商）的分类体系：类别、标签词表、公司（主体）名录，以及防止张冠李戴的身份词典。
 // 模型按这里的词表打标签，主题页（topics.json）按标签归类，筛选栏按类别分组。
 // 换行业时：类别的 key 会出现在网址里（/all?category=…），上线后就不要再改；标签和名录可以随时增减。
 
@@ -12,57 +12,66 @@
  * feedLabel 是分类 RSS 标题里的名字（不写就用 label）。公开接口、RSS 和 MCP 里要把一类并进另一类发布，写在站点设置里（site/site.ts 的 PUBLIC_CATEGORIES）。
  */
 export const CATEGORIES = [
-  { key: "ai-models", tagColor: "indigo", label: "模型", feedLabel: "AI 模型", section: "模型发布/更新", guide: "模型本身的发布、版本、权重开放、能力或价格变化，以及既有榜单上的模型成绩。公布一次跑分不是发布新基准，也不是教程。" },
-  { key: "ai-products", tagColor: "turquoise", label: "产品", feedLabel: "AI 产品", section: "产品发布/更新", guide: "可使用的 AI 产品、功能、应用、工具、API、平台和工程组件的发布更新。模型厂商发布的推理框架、算子库、硬件适配组件仍是产品，不能因为厂商名归成模型。" },
-  { key: "industry", tagColor: "orange", label: "行业", feedLabel: "行业动态", section: "行业动态", guide: "已发生的公司经营、融资并购、人事、合作、诉讼、政策、真实安全事故及调查进展。新闻由当事人发帖、带有态度，也不因此变成观点。" },
-  { key: "paper", tagColor: "violet", label: "论文", feedLabel: "论文", section: "论文研究", guide: "以新研究方法、实验设计与发现为核心的论文、技术报告、新基准或研究数据集。系统性红队实验属于研究；既有榜单成绩归模型，真实事故的新闻调查归行业。" },
-  { key: "tip", tagColor: "green", label: "教程", section: "技巧与观点", guide: "读者可以照着使用的方法、提示词、工具用法、工程实践复盘与技术讲解。重点是可复用的做法；单纯发布工具归产品，只有态度和预测而无做法归观点。", commentary: true },
-  { key: "opinion", tagColor: "purple", label: "观点", section: "技巧与观点", guide: "重点是作者的解释、判断、主张、预测、评论或访谈观点。讨论市场不自动归行业，作者是名人不自动归观点。", commentary: true },
+  { key: "products", tagColor: "indigo", label: "产品", feedLabel: "产品与技术", section: "新品与技术", guide: "家用与小型商用网络产品（路由器、Mesh、交换机、4G/5G CPE、电力猫、网卡）、智能家居与安防摄像头的发布、型号更新、固件功能、价格与上市地区，以及 Wi-Fi 标准、芯片平台和认证进展。产品评测也归这里；同一产品的渠道促销归渠道。" },
+  { key: "channel", tagColor: "turquoise", label: "渠道", feedLabel: "渠道与电商", section: "渠道与电商", guide: "Amazon（Vendor/Seller Central、费用、广告、物流、Prime Day 与黑五）、bol、Coolblue、MediaMarkt 等零售与电商平台的规则、费用、促销和经营动作，运营商的路由器政策与套餐捆绑，分销与渠道合作。平台公司的财报和人事归行业。" },
+  { key: "industry", tagColor: "orange", label: "行业", feedLabel: "行业与竞品", section: "行业与竞品", guide: "已发生的公司经营：财报、市场份额与销量数据、融资并购、人事、合作、诉讼、供应链与关税，以及竞品品牌的战略动作。新闻由当事人发帖、带有态度，也不因此变成观点。" },
+  { key: "policy", tagColor: "violet", label: "政策", feedLabel: "政策与安全", section: "政策与安全", guide: "欧盟与荷比卢、美国等地对联网设备和电商的法规、监管调查、禁令与执法（RED 网络安全条款、CRA、GPSR、路由器自由、能效与回收），以及路由器、摄像头等设备的安全漏洞、召回和真实安全事故。" },
+  { key: "tip", tagColor: "green", label: "实操", section: "实操与观点", guide: "读者可以照着做的方法：Amazon 运营与广告、Listing 与内容、零售和渠道实操、数据分析与 AI 工具在电商中的用法、网络部署与配置经验。重点是可复用的做法；单纯发布工具归渠道或产品，只有态度和预测而无做法归观点。", commentary: true },
+  { key: "opinion", tagColor: "purple", label: "观点", section: "实操与观点", guide: "重点是作者的解释、判断、主张、预测、评论或访谈观点，比如对 Wi-Fi 换代节奏、电商平台走向、竞品打法的分析。讨论市场不自动归行业，作者是名人不自动归观点。", commentary: true },
 ] as const satisfies ReadonlyArray<{ key: string; tagColor: string; label: string; feedLabel?: string; section: string; guide: string; commentary?: true }>;
 
 /**
- * 这个行业最受关注的一类发布（AI 行业是新模型）：日报报头的“N 个新模型”、改分类后修订已出的报告都按它数。
+ * 这个行业最受关注的一类发布（网通行业是新品）：日报报头的“N 款新品”、改分类后修订已出的报告都按它数。
  * category 是类别，tag 是标签，两者都对上才算；unit 接在数字后面。
  * 没有这样一类的行业设成 null，报头就不显示这个数。
  */
-export const RELEASE: { category: string; tag: string; unit: string } | null = { category: "ai-models", tag: "模型发布", unit: "个新模型" };
+export const RELEASE: { category: string; tag: string; unit: string } | null = { category: "products", tag: "新品发布", unit: "款新品" };
 
 /** 周报月报的总述可以直接写、不必在报道里找到出处的行业通用词（小写）。站名会自动算进去。 */
-export const PLAIN_TERMS: readonly string[] = ["ai", "api", "llm", "gpu", "agi", "ceo", "ipo"];
+export const PLAIN_TERMS: readonly string[] = ["wi-fi", "wifi", "mesh", "isp", "eu", "ai", "5g", "ceo", "api", "b2b", "b2c"];
 
 /**
  * 内容理解一步给每篇资料判的“内容类型”（写在 prompts/content-understanding.md 里，改了类型要同步改那份提示词）。
  * 评分提示词（prompts/selection-score.md）按类型给五个维度不同的权重。
  */
-export const ITEM_TYPES = ["model_release", "product_launch", "tool_or_prompt", "research_paper", "industry_event", "opinion_analysis", "tutorial_explainer"] as const;
+export const ITEM_TYPES = ["product_launch", "tech_update", "channel_move", "market_data", "industry_event", "policy_security", "opinion_analysis", "how_to"] as const;
 
 // ── 标签词表 ────────────────────────────────────────────────────────────────────────────
 
 /** 每篇资料的第一个标签必须是这些“分类标签”之一。 */
 export const CATEGORY_TAGS = [
-  "产品更新", "模型发布", "论文/研究", "开源/仓库", "教程/实践", "现象/趋势", "大佬观点", "评测/基准", "安全/对齐", "行业动态", "政策/监管",
-  "非AI/通用工具", "其他",
+  "新品发布", "产品更新", "技术/标准", "渠道/电商", "促销/价格", "市场/数据", "行业动态", "政策/监管", "安全/漏洞", "评测/对比", "实操/指南", "观点/访谈", "现象/趋势",
+  "非本行业", "其他",
 ] as const;
 
 /** 可选的主题标签。 */
 export const TOPIC_TAGS = [
-  "Agent", "编码", "推理", "多模态", "语音", "视频", "图像生成", "RAG", "端侧", "数据/训练", "搜索", "部署/工程", "开源生态", "具身智能", "MCP/工具调用",
+  "Wi-Fi 7", "Wi-Fi 8", "Mesh", "路由器", "交换机/商用", "4G/5G", "宽带/光纤", "智能家居", "安防摄像头", "芯片",
+  "Amazon 运营", "Amazon 广告", "零售渠道", "运营商", "大促", "AI 工具", "供应链/关税",
 ] as const;
 
 /** 可选的实体标签（公司、机构、平台）。 */
-export const ENTITY_TAGS = ["OpenAI", "Anthropic", "DeepSeek", "DeepMind", "Google", "Meta", "Microsoft", "xAI", "Hugging Face", "GitHub", "arXiv"] as const;
+export const ENTITY_TAGS = ["TP-Link", "Netgear", "ASUS", "AVM", "eero", "Amazon", "bol", "Coolblue", "MediaMarkt"] as const;
 
 /** 模型常写的近义词，统一成词表里的写法。 */
 export const TAG_SYNONYMS: Readonly<Record<string, string>> = {
-  "教程/玩法": "教程/实践", "技巧/最佳实践": "教程/实践", "合作/生态": "行业动态", "融资/收购": "行业动态", "公司动态": "行业动态",
-  合作: "行业动态", 生态: "行业动态", 融资: "行业动态", 收购: "行业动态", 投资: "行业动态", 并购: "行业动态",
-  政策: "政策/监管", 监管: "政策/监管", 法规: "政策/监管", 安全: "安全/对齐", 对齐: "安全/对齐",
-  论文: "论文/研究", 研究: "论文/研究", paper: "论文/研究", papers: "论文/研究",
-  "open-source": "开源/仓库", 开源: "开源/仓库", 仓库: "开源/仓库", repo: "开源/仓库",
-  教程: "教程/实践", 玩法: "教程/实践", 指南: "教程/实践", 技巧: "教程/实践", 最佳实践: "教程/实践", 实践: "教程/实践",
-  产品: "产品更新", 更新: "产品更新", 发布: "模型发布", 模型: "模型发布", 趋势: "现象/趋势", 现象: "现象/趋势", 观点: "大佬观点",
-  视频生成: "视频", 非ai: "非AI/通用工具", "non-ai": "非AI/通用工具", 通用工具: "非AI/通用工具", 工程工具: "非AI/通用工具",
-  安全扫描: "非AI/通用工具", devops: "非AI/通用工具", 行业: "行业动态", 动态: "行业动态",
+  新品: "新品发布", 新产品: "新品发布", 发布: "新品发布", 上市: "新品发布", 产品发布: "新品发布",
+  产品: "产品更新", 更新: "产品更新", 固件: "产品更新", 固件更新: "产品更新", 功能更新: "产品更新",
+  技术: "技术/标准", 标准: "技术/标准", 认证: "技术/标准",
+  电商: "渠道/电商", 渠道: "渠道/电商", 零售: "渠道/电商", 平台: "渠道/电商", 分销: "渠道/电商",
+  促销: "促销/价格", 价格: "促销/价格", 折扣: "促销/价格", 降价: "促销/价格", 优惠: "促销/价格", deals: "促销/价格",
+  市场: "市场/数据", 数据: "市场/数据", 财报: "市场/数据", 销量: "市场/数据", 份额: "市场/数据", 报告: "市场/数据", 研究: "市场/数据",
+  公司动态: "行业动态", 合作: "行业动态", 融资: "行业动态", 收购: "行业动态", 并购: "行业动态", 投资: "行业动态", 人事: "行业动态", 行业: "行业动态", 动态: "行业动态",
+  政策: "政策/监管", 监管: "政策/监管", 法规: "政策/监管", 合规: "政策/监管", 禁令: "政策/监管",
+  安全: "安全/漏洞", 漏洞: "安全/漏洞", 网络安全: "安全/漏洞", 召回: "安全/漏洞",
+  评测: "评测/对比", 测评: "评测/对比", 对比: "评测/对比", review: "评测/对比",
+  教程: "实操/指南", 指南: "实操/指南", 实操: "实操/指南", 技巧: "实操/指南", 最佳实践: "实操/指南", 实践: "实操/指南",
+  观点: "观点/访谈", 访谈: "观点/访谈", 评论: "观点/访谈", 趋势: "现象/趋势", 现象: "现象/趋势",
+  非网通: "非本行业", 无关: "非本行业",
+  wifi7: "Wi-Fi 7", "wifi 7": "Wi-Fi 7", "wi-fi7": "Wi-Fi 7", "802.11be": "Wi-Fi 7", wifi8: "Wi-Fi 8", "wifi 8": "Wi-Fi 8", "wi-fi8": "Wi-Fi 8", "802.11bn": "Wi-Fi 8",
+  mesh: "Mesh", 网状网络: "Mesh", 组网: "Mesh", 路由: "路由器", router: "路由器", 交换机: "交换机/商用", 商用网络: "交换机/商用",
+  "5g": "4G/5G", "4g": "4G/5G", cpe: "4G/5G", 宽带: "宽带/光纤", 光纤: "宽带/光纤", 摄像头: "安防摄像头", 监控: "安防摄像头",
+  amazon广告: "Amazon 广告", 广告: "Amazon 广告", 运营商渠道: "运营商", isp: "运营商", 黑五: "大促", "prime day": "大促", 关税: "供应链/关税", 供应链: "供应链/关税",
 };
 
 // ── 公司与主体 ──────────────────────────────────────────────────────────────────────────
@@ -74,24 +83,32 @@ export const TAG_SYNONYMS: Readonly<Record<string, string>> = {
  * 所有这些名字都用来认出说的是哪家公司，比如把事实的主体对到发布方。
  */
 export const ENTITIES: Record<string, { name: string; displayTag: string | null; aliases: string[]; orgNames?: string[]; otherNames?: string[] }> = {
-  "world-labs": { name: "World Labs", displayTag: null, aliases: ["World Labs"] },
-  "thinking-machines": { name: "Thinking Machines Lab", displayTag: null, aliases: ["Thinking Machines"] },
-  amd: { name: "AMD", displayTag: null, aliases: ["AMD", "Advanced Micro Devices"] },
-  openai: { name: "OpenAI", displayTag: "OpenAI", aliases: ["OpenAI", "ChatGPT", "Sora", "Codex", "GPT"], orgNames: ["OpenAI"], otherNames: ["OpenAI Developers"] },
-  anthropic: { name: "Anthropic", displayTag: "Anthropic", aliases: ["Anthropic", "Claude"], orgNames: ["Anthropic"], otherNames: ["Claude Code"] },
-  google: { name: "Google", displayTag: "Google", aliases: ["Google", "DeepMind", "Gemini", "谷歌"], orgNames: ["Google DeepMind", "Google Research", "Google", "DeepMind", "谷歌"], otherNames: ["Google AI", "Google Labs", "Google Cloud"] },
-  deepseek: { name: "DeepSeek", displayTag: "DeepSeek", aliases: ["DeepSeek", "深度求索"], orgNames: ["DeepSeek", "深度求索"] },
-  qwen: { name: "千问 Qwen", displayTag: null, aliases: ["Qwen", "通义", "阿里"], orgNames: ["通义千问", "通义实验室", "阿里巴巴", "阿里云", "阿里", "Qwen Team", "Qwen", "Alibaba"], otherNames: ["千问", "千问APP", "Alibaba Cloud"] },
-  kimi: { name: "月之暗面 / Kimi", displayTag: null, aliases: ["Kimi", "月之暗面", "Moonshot", "Kimi / 月之暗面"], orgNames: ["Moonshot AI", "月之暗面", "Kimi"] },
-  minimax: { name: "MiniMax", displayTag: null, aliases: ["MiniMax", "海螺"], orgNames: ["MiniMax", "稀宇科技"] },
-  zhipu: { name: "智谱 GLM", displayTag: null, aliases: ["智谱", "GLM", "Z.ai"], orgNames: ["智谱AI", "智谱", "Zhipu AI", "Z.ai"], otherNames: ["Zhipu"] },
-  xai: { name: "xAI", displayTag: "xAI", aliases: ["xAI", "Grok"], orgNames: ["SpaceX Super Intelligence", "SpaceXAI", "SpaceXSI", "xAI"], otherNames: ["Grok Bot"] },
-  meta: { name: "Meta", displayTag: "Meta", aliases: ["Meta", "Llama"], orgNames: ["Meta Superintelligence Labs", "Meta AI", "Meta"], otherNames: ["AI at Meta", "Muse"] },
-  microsoft: { name: "Microsoft", displayTag: "Microsoft", aliases: ["Microsoft", "微软", "Copilot"], orgNames: ["Microsoft Research", "Microsoft AI", "Microsoft", "微软"] },
-  nvidia: { name: "NVIDIA", displayTag: null, aliases: ["NVIDIA", "英伟达"], orgNames: ["NVIDIA", "英伟达"] },
-  "hugging-face": { name: "Hugging Face", displayTag: "Hugging Face", aliases: ["Hugging Face"], orgNames: ["Hugging Face", "HuggingFace"] },
-  cursor: { name: "Cursor", displayTag: null, aliases: ["Cursor", "Anysphere"], orgNames: ["Cursor"] },
-  openrouter: { name: "OpenRouter", displayTag: null, aliases: ["OpenRouter"], orgNames: ["OpenRouter"] },
+  "tp-link": { name: "TP-Link", displayTag: "TP-Link", aliases: ["TP-Link", "Deco", "Archer", "Tapo", "Omada", "Mercusys", "普联"], orgNames: ["TP-Link", "TP-Link Systems", "普联"], otherNames: ["Mercusys", "Tapo", "Omada", "Kasa"] },
+  netgear: { name: "Netgear", displayTag: "Netgear", aliases: ["Netgear", "NETGEAR", "Orbi", "Nighthawk"], orgNames: ["NETGEAR", "Netgear"] },
+  asus: { name: "ASUS", displayTag: "ASUS", aliases: ["ASUS", "华硕", "ZenWiFi", "ROG Rapture"], orgNames: ["ASUS", "华硕"] },
+  avm: { name: "AVM / FRITZ!", displayTag: "AVM", aliases: ["AVM", "FRITZ!", "FRITZ!Box", "FRITZ! / AVM"], orgNames: ["AVM", "FRITZ!"] },
+  eero: { name: "eero", displayTag: "eero", aliases: ["eero", "Amazon eero"], orgNames: ["eero"] },
+  linksys: { name: "Linksys", displayTag: null, aliases: ["Linksys", "Velop"], orgNames: ["Linksys"] },
+  ubiquiti: { name: "Ubiquiti / UniFi", displayTag: null, aliases: ["Ubiquiti", "UniFi"], orgNames: ["Ubiquiti"] },
+  devolo: { name: "devolo", displayTag: null, aliases: ["devolo"], orgNames: ["devolo"] },
+  "google-nest": { name: "Google Nest Wifi", displayTag: null, aliases: ["Nest Wifi", "Google Wifi"], orgNames: ["Google Nest"] },
+  huawei: { name: "Huawei", displayTag: null, aliases: ["Huawei", "华为"], orgNames: ["Huawei", "华为"] },
+  xiaomi: { name: "Xiaomi", displayTag: null, aliases: ["Xiaomi", "小米"], orgNames: ["Xiaomi", "小米"] },
+  zyxel: { name: "Zyxel", displayTag: null, aliases: ["Zyxel"], orgNames: ["Zyxel"] },
+  "d-link": { name: "D-Link", displayTag: null, aliases: ["D-Link"], orgNames: ["D-Link"] },
+  tenda: { name: "Tenda", displayTag: null, aliases: ["Tenda", "腾达"], orgNames: ["Tenda"] },
+  qualcomm: { name: "Qualcomm", displayTag: null, aliases: ["Qualcomm", "高通"], orgNames: ["Qualcomm", "高通"] },
+  mediatek: { name: "MediaTek", displayTag: null, aliases: ["MediaTek", "联发科", "Filogic"], orgNames: ["MediaTek", "联发科"] },
+  broadcom: { name: "Broadcom", displayTag: null, aliases: ["Broadcom", "博通"], orgNames: ["Broadcom", "博通"] },
+  amazon: { name: "Amazon", displayTag: "Amazon", aliases: ["Amazon", "亚马逊", "Amazon.nl", "Amazon.com.be"], orgNames: ["Amazon", "亚马逊"], otherNames: ["Amazon Ads", "Seller Central", "Vendor Central"] },
+  bol: { name: "bol", displayTag: "bol", aliases: ["bol", "bol.com"], orgNames: ["bol"] },
+  coolblue: { name: "Coolblue", displayTag: "Coolblue", aliases: ["Coolblue"], orgNames: ["Coolblue"] },
+  mediamarkt: { name: "MediaMarkt", displayTag: "MediaMarkt", aliases: ["MediaMarkt", "Media Markt", "Ceconomy"], orgNames: ["MediaMarkt", "Ceconomy"] },
+  kpn: { name: "KPN", displayTag: null, aliases: ["KPN"], orgNames: ["KPN"] },
+  odido: { name: "Odido", displayTag: null, aliases: ["Odido"], orgNames: ["Odido"] },
+  vodafoneziggo: { name: "VodafoneZiggo", displayTag: null, aliases: ["VodafoneZiggo", "Ziggo"], orgNames: ["VodafoneZiggo", "Ziggo"] },
+  proximus: { name: "Proximus", displayTag: null, aliases: ["Proximus"], orgNames: ["Proximus"] },
+  telenet: { name: "Telenet", displayTag: null, aliases: ["Telenet"], orgNames: ["Telenet"] },
 };
 
 /**
@@ -99,57 +116,59 @@ export const ENTITIES: Record<string, { name: string; displayTag: string | null;
  * 行业没有这个问题时可以留空数组。
  */
 export const IDENTITY_LEXICON: ReadonlyArray<{ id: string; name: string; patterns: RegExp[] }> = [
-  { id: "openai", name: "OpenAI", patterns: [/openai|chatgpt|\bgpt-?[o\d]|\bsora\b|\bcodex\b/i] },
-  { id: "anthropic", name: "Anthropic", patterns: [/anthropic|\bclaude\b/i, /\b(?:opus|sonnet|haiku)\s*\d+(?:[.\-]\d+)*\b/i, /\bfable\s*\d+(?:[.\-]\d+)*\b|\bmythos\b/i] },
-  { id: "google", name: "Google / Gemini", patterns: [/google|deepmind|\bgemini\b|notebooklm|\bveo\s?\d|\bAlphaFold\b|\bAMIE\b/i] },
-  { id: "deepseek", name: "DeepSeek", patterns: [/deepseek|深度求索/i] },
-  { id: "xai", name: "xAI / Grok", patterns: [/\bxai\b|\bgrok\b/i] },
-  { id: "meta", name: "Meta / Llama", patterns: [/\bMeta\b/, /\bmeta\s?ai\b|\bllama\b/i] },
-  { id: "microsoft", name: "Microsoft / Copilot", patterns: [/microsoft|copilot|微软/i] },
-  { id: "nvidia", name: "NVIDIA", patterns: [/nvidia|英伟达|\bnemotron\b|\bnemo\b|\bblackwell\b|\brubin(?:\s+ultra)?\b|\bcuda\b/i] },
-  { id: "qwen", name: "千问 Qwen", patterns: [/\bqwen|通义|千问/i] },
-  { id: "hugging-face", name: "Hugging Face", patterns: [/hugging\s?face/i] },
-  { id: "cursor", name: "Cursor", patterns: [/\bCursor\b/] },
-  { id: "kimi", name: "月之暗面 / Kimi", patterns: [/\bkimi\b|月之暗面|\bmoonshot\s?ai\b/i] },
-  { id: "openrouter", name: "OpenRouter", patterns: [/openrouter/i] },
-  { id: "minimax", name: "MiniMax", patterns: [/minimax/i] },
-  { id: "zhipu", name: "智谱 GLM", patterns: [/智谱|\bglm-?[4-9]/i] },
-  { id: "hunyuan", name: "腾讯混元", patterns: [/混元|hunyuan/i] },
-  { id: "doubao", name: "字节豆包", patterns: [/豆包|doubao|字节跳动|bytedance/i] },
-  { id: "mistral", name: "Mistral", patterns: [/mistral/i] },
-  { id: "perplexity", name: "Perplexity", patterns: [/\bPerplexity\b/] },
-  { id: "runway", name: "Runway", patterns: [/\brunway\b/i] },
-  { id: "suno", name: "Suno", patterns: [/\bsuno\b/i] },
-  { id: "midjourney", name: "Midjourney", patterns: [/midjourney/i] },
-  { id: "stability-ai", name: "Stability AI", patterns: [/stability\s?ai/i] },
-  { id: "elevenlabs", name: "ElevenLabs", patterns: [/eleven\s?labs/i] },
-  { id: "vllm", name: "vLLM", patterns: [/\bvllm\b/i] },
-  { id: "ollama", name: "Ollama", patterns: [/\bollama\b/i] },
-  { id: "windsurf", name: "Windsurf", patterns: [/windsurf/i] },
-  { id: "devin", name: "Devin", patterns: [/\bdevin\b/i] },
-  { id: "manus", name: "Manus", patterns: [/\bmanus\b/i] },
-  { id: "apple", name: "Apple AI", patterns: [/\bapple\s?(intelligence|silicon|ai)\b|苹果(智能|\s?AI)/i] },
-  { id: "amazon", name: "Amazon / AWS", patterns: [/amazon|\baws\b|亚马逊/i] },
-  { id: "baidu", name: "百度文心", patterns: [/百度|baidu|文心|\bernie\s?bot\b/i] },
+  { id: "tp-link", name: "TP-Link", patterns: [/tp-?link|普联|\btapo\b|\bomada\b|mercusys/i, /\bdeco\s?(?:x|xe|be|m|s)\d/i, /\barcher\s?(?:be|ax|axe|gx|ge|c)?\s?\d/i] },
+  { id: "netgear", name: "Netgear", patterns: [/netgear|\borbi\b|nighthawk/i] },
+  { id: "asus", name: "ASUS", patterns: [/\basus\b|华硕|zenwifi|rog\s?rapture/i] },
+  { id: "avm", name: "AVM / FRITZ!", patterns: [/\bAVM\b/, /fritz!|fritz\s?box/i] },
+  { id: "eero", name: "eero", patterns: [/\beero\b/i] },
+  { id: "linksys", name: "Linksys", patterns: [/linksys|\bvelop\b/i] },
+  { id: "ubiquiti", name: "Ubiquiti", patterns: [/ubiquiti|\bunifi\b|amplifi/i] },
+  { id: "devolo", name: "devolo", patterns: [/devolo/i] },
+  { id: "google-nest", name: "Google Nest Wifi", patterns: [/nest\s?wi-?fi|google\s?wi-?fi/i] },
+  { id: "huawei", name: "Huawei", patterns: [/huawei|华为/i] },
+  { id: "xiaomi", name: "Xiaomi", patterns: [/xiaomi|小米/i] },
+  { id: "zyxel", name: "Zyxel", patterns: [/zyxel/i] },
+  { id: "d-link", name: "D-Link", patterns: [/\bd-?link\b/i] },
+  { id: "tenda", name: "Tenda", patterns: [/\btenda\b|腾达/i] },
+  { id: "qualcomm", name: "Qualcomm", patterns: [/qualcomm|高通/i] },
+  { id: "mediatek", name: "MediaTek", patterns: [/mediatek|联发科|\bfilogic\b/i] },
+  { id: "broadcom", name: "Broadcom", patterns: [/broadcom|博通/i] },
+  { id: "amazon", name: "Amazon", patterns: [/amazon|亚马逊/i] },
+  { id: "bol", name: "bol", patterns: [/\bbol(?:\.com)?\b/i] },
+  { id: "coolblue", name: "Coolblue", patterns: [/coolblue/i] },
+  { id: "mediamarkt", name: "MediaMarkt", patterns: [/media\s?markt|ceconomy/i] },
+  { id: "kpn", name: "KPN", patterns: [/\bkpn\b/i] },
+  { id: "odido", name: "Odido", patterns: [/\bodido\b/i] },
+  { id: "vodafoneziggo", name: "VodafoneZiggo", patterns: [/vodafone\s?ziggo|\bziggo\b/i] },
+  { id: "proximus", name: "Proximus", patterns: [/proximus/i] },
+  { id: "telenet", name: "Telenet", patterns: [/telenet/i] },
 ];
 
 /** 这些域名上的文章，发布方就是对应的公司（托管平台如 GitHub、arXiv 不算）。 */
 export const PUBLISHER_DOMAINS: ReadonlyArray<{ entityId: string; domains: readonly string[] }> = [
-  { entityId: "openai", domains: ["openai.com"] },
-  { entityId: "anthropic", domains: ["anthropic.com", "claude.com"] },
-  { entityId: "google", domains: ["deepmind.google", "ai.google", "blog.google"] },
-  { entityId: "deepseek", domains: ["deepseek.com"] },
-  { entityId: "xai", domains: ["x.ai"] },
-  { entityId: "meta", domains: ["ai.meta.com"] },
-  { entityId: "microsoft", domains: ["microsoft.com"] },
-  { entityId: "nvidia", domains: ["nvidia.com"] },
-  { entityId: "qwen", domains: ["qwen.ai"] },
-  { entityId: "cursor", domains: ["cursor.com"] },
-  { entityId: "openrouter", domains: ["openrouter.ai"] },
+  { entityId: "tp-link", domains: ["tp-link.com", "tapo.com", "omadanetworks.com", "mercusys.com"] },
+  { entityId: "netgear", domains: ["netgear.com"] },
+  { entityId: "asus", domains: ["asus.com"] },
+  { entityId: "avm", domains: ["avm.de", "fritz.com"] },
+  { entityId: "eero", domains: ["eero.com"] },
+  { entityId: "linksys", domains: ["linksys.com"] },
+  { entityId: "ubiquiti", domains: ["ui.com"] },
+  { entityId: "devolo", domains: ["devolo.com", "devolo.nl", "devolo.de"] },
+  { entityId: "qualcomm", domains: ["qualcomm.com"] },
+  { entityId: "mediatek", domains: ["mediatek.com"] },
+  { entityId: "broadcom", domains: ["broadcom.com"] },
+  { entityId: "amazon", domains: ["aboutamazon.com", "aboutamazon.eu", "sell.amazon.com"] },
+  { entityId: "bol", domains: ["bol.com", "partnerplatform.bol.com"] },
+  { entityId: "coolblue", domains: ["coolblue.nl", "coolblue.be"] },
+  { entityId: "kpn", domains: ["kpn.com", "overons.kpn"] },
+  { entityId: "odido", domains: ["odido.nl"] },
+  { entityId: "vodafoneziggo", domains: ["vodafoneziggo.nl"] },
+  { entityId: "proximus", domains: ["proximus.com", "proximus.be"] },
+  { entityId: "telenet", domains: ["telenet.be"] },
 ];
 
 /** 原文里的这些写法也算提到了对应公司。 */
 export const IDENTITY_CONTEXT_ALIASES: ReadonlyArray<{ entityId: string; pattern: RegExp }> = [
-  { entityId: "meta", pattern: /@AIatMeta\b/i },
-  { entityId: "zhipu", pattern: /\bZhipu(?:\s+AI\b|['’]s\b)/i },
+  { entityId: "tp-link", pattern: /@TPLINK\w*\b/i },
+  { entityId: "avm", pattern: /\bFRITZ\b/ },
 ];
