@@ -8,19 +8,20 @@
 
 ## 内容类型
 
-`itemType` 必须七选一：
+`itemType` 必须八选一：
 
-- `model_release`：新模型或大版本更新
-- `product_launch`：新产品、工具或重大功能更新
-- `tool_or_prompt`：可直接复用的方法、Prompt、Skill 或技巧
-- `research_paper`：论文、研究或技术报告
-- `industry_event`：融资、收购、监管、诉讼、商业动作或人事
+- `product_launch`：新产品、新型号、新系列或重大功能/固件更新
+- `tech_update`：Wi-Fi 标准、认证、芯片平台或关键技术进展
+- `channel_move`：电商平台与零售渠道的规则、费用、广告、物流、大促，运营商与分销的渠道动作
+- `market_data`：财报、市场份额、销量、价格监测或行业研究报告
+- `industry_event`：融资、收购、人事、合作、诉讼、供应链或公司战略动作
+- `policy_security`：法规、监管调查、禁令、安全漏洞、召回或安全事故
 - `opinion_analysis`：观点、行业判断、复盘或长访谈
-- `tutorial_explainer`：教程、科普、解读或评测
+- `how_to`：可照着做的运营方法、工具用法、教程或产品评测
 
-优先级：发了模型选 model_release；发了工具选 product_launch；发了 Prompt 或方法选 tool_or_prompt；论文优先 research_paper；评测选 tutorial_explainer。原文把发布写成过去的事、本条在讲用法或做演示时，不算本次发布，选 tutorial_explainer。
+优先级：发了新品或新固件选 product_launch；标准、认证、芯片选 tech_update；平台或渠道规则、费用、促销选 channel_move；以数字和报告为核心选 market_data；法规和安全选 policy_security；评测和教程选 how_to。原文把发布写成过去的事、本条在讲用法或做评测时，不算本次发布，选 how_to。
 
-输出前检查 `itemType` 与第一个分类标签是否自洽：`model_release` 对应“模型发布”，`product_launch` 对应“产品更新”，`research_paper` 对应“论文/研究”，`industry_event` 对应“行业动态”或“政策/监管”，`opinion_analysis` 对应“大佬观点”或“现象/趋势”，`tutorial_explainer` 对应“教程/实践”或“评测/基准”。如果二者冲突，按当前材料的核心事件修正后再输出。
+输出前检查 `itemType` 与第一个分类标签是否自洽：`product_launch` 对应“新品发布”或“产品更新”，`tech_update` 对应“技术/标准”，`channel_move` 对应“渠道/电商”或“促销/价格”，`market_data` 对应“市场/数据”，`industry_event` 对应“行业动态”，`policy_security` 对应“政策/监管”或“安全/漏洞”，`opinion_analysis` 对应“观点/访谈”或“现象/趋势”，`how_to` 对应“实操/指南”或“评测/对比”。如果二者冲突，按当前材料的核心事件修正后再输出。
 
 ## 作者角色
 
@@ -32,14 +33,14 @@
 
 ## 标签
 
-`tags` 输出 1–6 个字符串。第一个必须从以下分类标签中选一个：模型发布、产品更新、开源/仓库、论文/研究、教程/实践、大佬观点、评测/基准、安全/对齐、现象/趋势、行业动态、政策/监管、非AI/通用工具、其他。
+`tags` 输出 1–6 个字符串。第一个必须从以下分类标签中选一个：新品发布、产品更新、技术/标准、渠道/电商、促销/价格、市场/数据、行业动态、政策/监管、安全/漏洞、评测/对比、实操/指南、观点/访谈、现象/趋势、非本行业、其他。
 
 其后可选 0–5 个适用标签，并且只能来自以下两个白名单：
 
-- 主题：Agent、编码、推理、多模态、语音、视频、图像生成、RAG、端侧、数据/训练、搜索、部署/工程、开源生态、具身智能、MCP/工具调用
-- 实体：OpenAI、Anthropic、DeepSeek、DeepMind、Google、Meta、Microsoft、xAI、Hugging Face、GitHub、arXiv
+- 主题：Wi-Fi 7、Wi-Fi 8、Mesh、路由器、交换机/商用、4G/5G、宽带/光纤、智能家居、安防摄像头、芯片、Amazon 运营、Amazon 广告、零售渠道、运营商、大促、AI 工具、供应链/关税
+- 实体：TP-Link、Netgear、ASUS、AVM、eero、Amazon、bol、Coolblue、MediaMarkt
 
-正文中即使明确出现了 NVIDIA、Apple、阿里等其他实体，也不要把它们放进 `tags`。不要创造白名单之外的标签。没有适用的主题或实体时，只返回第一个分类标签；例如学校限制 AI 使用的监管新闻，不需要强行归到“编码”或“推理”。
+正文中即使明确出现了 Linksys、Qualcomm、KPN 等其他实体，也不要把它们放进 `tags`。不要创造白名单之外的标签。没有适用的主题或实体时，只返回第一个分类标签；例如欧盟电商平台监管的新闻，不需要强行归到“路由器”或“Mesh”。
 
 ## 候选阅读价值
 
@@ -51,12 +52,12 @@
 
 ## 中文标题和摘要
 
-`titleZh` 必须是自洽的中文标题，包含事件主体以及动作或结果。保留必要的模型名、产品名、版本号、机构名和关键数字，不写“最新动态”“引发关注”等空话。原标题已经是中文时也要保证脱离来源名后仍能独立理解。
+`titleZh` 必须是自洽的中文标题，包含事件主体以及动作或结果。保留必要的品牌、型号、产品名、机构名和关键数字，不写“最新动态”“引发关注”等空话。原标题已经是中文时也要保证脱离来源名后仍能独立理解。
 
-`summaryZh` 必须忠实使用当前材料。短 X 推文完整翻译作者自己的主推文；长推文或文章先写核心事实，再写一层关键细节或影响。保留关键数字、版本、机构、模型和 URL；引用内容只作上下文，不冒充主推作者自己的话。
+`summaryZh` 必须忠实使用当前材料。短 X 推文完整翻译作者自己的主推文；长推文或文章先写核心事实，再写一层关键细节或影响。保留关键数字、型号、价格、机构和 URL；引用内容只作上下文，不冒充主推作者自己的话。
 
 图片只能补充清晰可见、与正文直接相关的事实。忽略头像、品牌图、装饰图、模糊内容和与正文重复的信息。不得仅凭图片猜测人物身份、地点、时间、因果、性能或产品能力；图文冲突时不得擅自裁决。
 
 只返回合法 JSON，不要 Markdown，不要解释。顶层必须且只能包含以下六个字段：
 
-{"itemType":"product_launch","authorRole":"principal","tags":["产品更新","Agent"],"editorialJudgment":"原文给出了能力变化和开放入口，读者可以据此判断它会怎样改变现有工作流。","titleZh":"某产品发布智能体功能","summaryZh":"某产品发布新的智能体功能，给出了开放入口和主要能力变化。"}
+{"itemType":"product_launch","authorRole":"principal","tags":["新品发布","Mesh"],"editorialJudgment":"原文给出了欧洲售价和上市时间，读者可以据此判断它会落在哪个价位段与哪些型号竞争。","titleZh":"某品牌在欧洲推出 Wi-Fi 7 Mesh 系统","summaryZh":"某品牌在欧洲推出新的 Wi-Fi 7 Mesh 系统，给出了售价、上市时间和主要规格。"}
