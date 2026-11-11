@@ -12,7 +12,7 @@
  * feedLabel 是分类 RSS 标题里的名字（不写就用 label）。公开接口、RSS 和 MCP 里要把一类并进另一类发布，写在站点设置里（site/site.ts 的 PUBLIC_CATEGORIES）。
  */
 export const CATEGORIES = [
-  { key: "products", tagColor: "indigo", label: "产品", feedLabel: "产品与技术", section: "新品与技术", guide: "家用与小型商用网络产品（路由器、Mesh、交换机、4G/5G CPE、电力猫、网卡）、智能家居与安防摄像头的发布、型号更新、固件功能、价格与上市地区，以及 Wi-Fi 标准、芯片平台和认证进展。产品评测也归这里；同一产品的渠道促销归渠道。" },
+  { key: "products", tagColor: "indigo", label: "产品", feedLabel: "产品与技术", section: "新品与技术", guide: "家用与小型商用网络产品（路由器、Mesh、交换机、4G/5G CPE、电力猫、网卡）、智能家居（插座、照明、传感器、中枢）、安防摄像头、智能门铃与门锁、扫地机器人的发布、型号更新、固件功能、价格与上市地区，以及 Wi-Fi 与 Matter/Thread 标准、芯片平台和认证进展。产品评测也归这里；同一产品的渠道促销归渠道。" },
   { key: "channel", tagColor: "turquoise", label: "渠道", feedLabel: "渠道与电商", section: "渠道与电商", guide: "Amazon（Vendor/Seller Central、费用、广告、物流、Prime Day 与黑五）、bol、Coolblue、MediaMarkt 等零售与电商平台的规则、费用、促销和经营动作，运营商的路由器政策与套餐捆绑，分销与渠道合作。平台公司的财报和人事归行业。" },
   { key: "industry", tagColor: "orange", label: "行业", feedLabel: "行业与竞品", section: "行业与竞品", guide: "已发生的公司经营：财报、市场份额与销量数据、融资并购、人事、合作、诉讼、供应链与关税，以及竞品品牌的战略动作。新闻由当事人发帖、带有态度，也不因此变成观点。" },
   { key: "policy", tagColor: "violet", label: "政策", feedLabel: "政策与安全", section: "政策与安全", guide: "欧盟与荷比卢、美国等地对联网设备和电商的法规、监管调查、禁令与执法（RED 网络安全条款、CRA、GPSR、路由器自由、能效与回收），以及路由器、摄像头等设备的安全漏洞、召回和真实安全事故。" },
@@ -46,12 +46,12 @@ export const CATEGORY_TAGS = [
 
 /** 可选的主题标签。 */
 export const TOPIC_TAGS = [
-  "Wi-Fi 7", "Wi-Fi 8", "Mesh", "路由器", "交换机/商用", "4G/5G", "宽带/光纤", "智能家居", "安防摄像头", "芯片",
+  "Wi-Fi 7", "Wi-Fi 8", "Mesh", "路由器", "交换机/商用", "4G/5G", "宽带/光纤", "智能家居", "安防摄像头", "门铃/门锁", "扫地机器人", "Matter", "芯片",
   "Amazon 运营", "Amazon 广告", "零售渠道", "运营商", "大促", "AI 工具", "供应链/关税",
 ] as const;
 
 /** 可选的实体标签（公司、机构、平台）。 */
-export const ENTITY_TAGS = ["TP-Link", "Netgear", "ASUS", "AVM", "eero", "Amazon", "bol", "Coolblue", "MediaMarkt"] as const;
+export const ENTITY_TAGS = ["TP-Link", "Netgear", "ASUS", "AVM", "eero", "Ring", "eufy", "Philips Hue", "Amazon", "bol", "Coolblue", "MediaMarkt"] as const;
 
 /** 模型常写的近义词，统一成词表里的写法。 */
 export const TAG_SYNONYMS: Readonly<Record<string, string>> = {
@@ -71,6 +71,9 @@ export const TAG_SYNONYMS: Readonly<Record<string, string>> = {
   wifi7: "Wi-Fi 7", "wifi 7": "Wi-Fi 7", "wi-fi7": "Wi-Fi 7", "802.11be": "Wi-Fi 7", wifi8: "Wi-Fi 8", "wifi 8": "Wi-Fi 8", "wi-fi8": "Wi-Fi 8", "802.11bn": "Wi-Fi 8",
   mesh: "Mesh", 网状网络: "Mesh", 组网: "Mesh", 路由: "路由器", router: "路由器", 交换机: "交换机/商用", 商用网络: "交换机/商用",
   "5g": "4G/5G", "4g": "4G/5G", cpe: "4G/5G", 宽带: "宽带/光纤", 光纤: "宽带/光纤", 摄像头: "安防摄像头", 监控: "安防摄像头",
+  门铃: "门铃/门锁", 智能门铃: "门铃/门锁", 门锁: "门铃/门锁", 智能门锁: "门铃/门锁", doorbell: "门铃/门锁",
+  扫地机: "扫地机器人", 扫拖机器人: "扫地机器人", 机器人吸尘器: "扫地机器人", robotstofzuiger: "扫地机器人", "robot vacuum": "扫地机器人",
+  matter: "Matter", thread: "Matter", 智能插座: "智能家居", 智能照明: "智能家居", 智能灯: "智能家居",
   amazon广告: "Amazon 广告", 广告: "Amazon 广告", 运营商渠道: "运营商", isp: "运营商", 黑五: "大促", "prime day": "大促", 关税: "供应链/关税", 供应链: "供应链/关税",
 };
 
@@ -83,7 +86,7 @@ export const TAG_SYNONYMS: Readonly<Record<string, string>> = {
  * 所有这些名字都用来认出说的是哪家公司，比如把事实的主体对到发布方。
  */
 export const ENTITIES: Record<string, { name: string; displayTag: string | null; aliases: string[]; orgNames?: string[]; otherNames?: string[] }> = {
-  "tp-link": { name: "TP-Link", displayTag: "TP-Link", aliases: ["TP-Link", "Deco", "Archer", "Tapo", "Omada", "Mercusys", "普联"], orgNames: ["TP-Link", "TP-Link Systems", "普联"], otherNames: ["Mercusys", "Tapo", "Omada", "Kasa"] },
+  "tp-link": { name: "TP-Link", displayTag: "TP-Link", aliases: ["TP-Link", "Deco", "Archer", "Tapo", "Kasa", "VIGI", "Omada", "Mercusys", "普联"], orgNames: ["TP-Link", "TP-Link Systems", "普联"], otherNames: ["Mercusys", "Tapo", "Omada", "Kasa"] },
   netgear: { name: "Netgear", displayTag: "Netgear", aliases: ["Netgear", "NETGEAR", "Orbi", "Nighthawk"], orgNames: ["NETGEAR", "Netgear"] },
   asus: { name: "ASUS", displayTag: "ASUS", aliases: ["ASUS", "华硕", "ZenWiFi", "ROG Rapture"], orgNames: ["ASUS", "华硕"] },
   avm: { name: "AVM / FRITZ!", displayTag: "AVM", aliases: ["AVM", "FRITZ!", "FRITZ!Box", "FRITZ! / AVM"], orgNames: ["AVM", "FRITZ!"] },
@@ -97,6 +100,19 @@ export const ENTITIES: Record<string, { name: string; displayTag: string | null;
   zyxel: { name: "Zyxel", displayTag: null, aliases: ["Zyxel"], orgNames: ["Zyxel"] },
   "d-link": { name: "D-Link", displayTag: null, aliases: ["D-Link"], orgNames: ["D-Link"] },
   tenda: { name: "Tenda", displayTag: null, aliases: ["Tenda", "腾达"], orgNames: ["Tenda"] },
+  ring: { name: "Ring", displayTag: "Ring", aliases: ["Ring", "Ring Doorbell", "Blink"], orgNames: ["Ring"], otherNames: ["Blink"] },
+  eufy: { name: "eufy / Anker", displayTag: "eufy", aliases: ["eufy", "eufy Security", "Anker"], orgNames: ["eufy", "Anker"] },
+  arlo: { name: "Arlo", displayTag: null, aliases: ["Arlo"], orgNames: ["Arlo"] },
+  reolink: { name: "Reolink", displayTag: null, aliases: ["Reolink"], orgNames: ["Reolink"] },
+  ezviz: { name: "EZVIZ", displayTag: null, aliases: ["EZVIZ", "萤石"], orgNames: ["EZVIZ"] },
+  "google-home": { name: "Google Nest / Home", displayTag: null, aliases: ["Nest Cam", "Nest Doorbell", "Google Home"], orgNames: ["Google Nest", "Google Home"] },
+  "philips-hue": { name: "Philips Hue / Signify", displayTag: "Philips Hue", aliases: ["Philips Hue", "Hue", "Signify", "WiZ"], orgNames: ["Philips Hue", "Signify"] },
+  aqara: { name: "Aqara", displayTag: null, aliases: ["Aqara", "绿米"], orgNames: ["Aqara"] },
+  ikea: { name: "IKEA Smart Home", displayTag: null, aliases: ["IKEA", "DIRIGERA", "宜家"], orgNames: ["IKEA"] },
+  roborock: { name: "Roborock", displayTag: null, aliases: ["Roborock", "石头科技"], orgNames: ["Roborock"] },
+  dreame: { name: "Dreame", displayTag: null, aliases: ["Dreame", "追觅"], orgNames: ["Dreame"] },
+  ecovacs: { name: "Ecovacs", displayTag: null, aliases: ["Ecovacs", "Deebot", "科沃斯"], orgNames: ["Ecovacs"] },
+  irobot: { name: "iRobot", displayTag: null, aliases: ["iRobot", "Roomba"], orgNames: ["iRobot"] },
   qualcomm: { name: "Qualcomm", displayTag: null, aliases: ["Qualcomm", "高通"], orgNames: ["Qualcomm", "高通"] },
   mediatek: { name: "MediaTek", displayTag: null, aliases: ["MediaTek", "联发科", "Filogic"], orgNames: ["MediaTek", "联发科"] },
   broadcom: { name: "Broadcom", displayTag: null, aliases: ["Broadcom", "博通"], orgNames: ["Broadcom", "博通"] },
@@ -116,7 +132,7 @@ export const ENTITIES: Record<string, { name: string; displayTag: string | null;
  * 行业没有这个问题时可以留空数组。
  */
 export const IDENTITY_LEXICON: ReadonlyArray<{ id: string; name: string; patterns: RegExp[] }> = [
-  { id: "tp-link", name: "TP-Link", patterns: [/tp-?link|普联|\btapo\b|\bomada\b|mercusys/i, /\bdeco\s?(?:x|xe|be|m|s)\d/i, /\barcher\s?(?:be|ax|axe|gx|ge|c)?\s?\d/i] },
+  { id: "tp-link", name: "TP-Link", patterns: [/tp-?link|普联|\btapo\b|\bkasa\b|\bvigi\b|\bomada\b|mercusys/i, /\bdeco\s?(?:x|xe|be|m|s)\d/i, /\barcher\s?(?:be|ax|axe|gx|ge|c)?\s?\d/i] },
   { id: "netgear", name: "Netgear", patterns: [/netgear|\borbi\b|nighthawk/i] },
   { id: "asus", name: "ASUS", patterns: [/\basus\b|华硕|zenwifi|rog\s?rapture/i] },
   { id: "avm", name: "AVM / FRITZ!", patterns: [/\bAVM\b/, /fritz!|fritz\s?box/i] },
@@ -130,6 +146,19 @@ export const IDENTITY_LEXICON: ReadonlyArray<{ id: string; name: string; pattern
   { id: "zyxel", name: "Zyxel", patterns: [/zyxel/i] },
   { id: "d-link", name: "D-Link", patterns: [/\bd-?link\b/i] },
   { id: "tenda", name: "Tenda", patterns: [/\btenda\b|腾达/i] },
+  { id: "ring", name: "Ring", patterns: [/\bRing\b/, /\bblink\s?(?:mini|outdoor|doorbell|camera)/i] },
+  { id: "eufy", name: "eufy / Anker", patterns: [/\beufy\b|\banker\b/i] },
+  { id: "arlo", name: "Arlo", patterns: [/\barlo\b/i] },
+  { id: "reolink", name: "Reolink", patterns: [/reolink/i] },
+  { id: "ezviz", name: "EZVIZ", patterns: [/ezviz|萤石/i] },
+  { id: "google-home", name: "Google Nest / Home", patterns: [/nest\s?(?:cam|doorbell|hub)|google\s?home/i] },
+  { id: "philips-hue", name: "Philips Hue / Signify", patterns: [/philips\s?hue|\bsignify\b/i, /\bHue\b/] },
+  { id: "aqara", name: "Aqara", patterns: [/aqara|绿米/i] },
+  { id: "ikea", name: "IKEA", patterns: [/\bikea\b|宜家|dirigera/i] },
+  { id: "roborock", name: "Roborock", patterns: [/roborock|石头科技/i] },
+  { id: "dreame", name: "Dreame", patterns: [/\bdreame\b|追觅/i] },
+  { id: "ecovacs", name: "Ecovacs", patterns: [/ecovacs|\bdeebot\b|科沃斯/i] },
+  { id: "irobot", name: "iRobot", patterns: [/irobot|\broomba\b/i] },
   { id: "qualcomm", name: "Qualcomm", patterns: [/qualcomm|高通/i] },
   { id: "mediatek", name: "MediaTek", patterns: [/mediatek|联发科|\bfilogic\b/i] },
   { id: "broadcom", name: "Broadcom", patterns: [/broadcom|博通/i] },
@@ -154,6 +183,13 @@ export const PUBLISHER_DOMAINS: ReadonlyArray<{ entityId: string; domains: reado
   { entityId: "linksys", domains: ["linksys.com"] },
   { entityId: "ubiquiti", domains: ["ui.com"] },
   { entityId: "devolo", domains: ["devolo.com", "devolo.nl", "devolo.de"] },
+  { entityId: "ring", domains: ["ring.com"] },
+  { entityId: "eufy", domains: ["eufy.com", "anker.com"] },
+  { entityId: "arlo", domains: ["arlo.com"] },
+  { entityId: "reolink", domains: ["reolink.com"] },
+  { entityId: "philips-hue", domains: ["philips-hue.com", "signify.com"] },
+  { entityId: "aqara", domains: ["aqara.com"] },
+  { entityId: "roborock", domains: ["roborock.com"] },
   { entityId: "qualcomm", domains: ["qualcomm.com"] },
   { entityId: "mediatek", domains: ["mediatek.com"] },
   { entityId: "broadcom", domains: ["broadcom.com"] },

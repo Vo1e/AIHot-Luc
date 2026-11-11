@@ -1,5 +1,5 @@
 {
-  "$comment": "示范信源：首次启动时导入（scripts/seed.ts），已存在的不会被覆盖。之后在后台“信源”里新建、修改和暂停。字段说明见 docs/customize.md。荷比卢网通与电商版：官方一手 + 荷比卢媒体 + 网通/安全媒体 + Google News 关键词搜索。Amazon 全球新闻与欧盟数字政策在后台给类别 broad-official，Wi-Fi Alliance 给 standards（见 industry/selection.ts）。",
+  "$comment": "示范信源：首次启动时导入（scripts/seed.ts），已存在的不会被覆盖。之后在后台“信源”里新建、修改和暂停。字段说明见 docs/customize.md。荷比卢网通与电商版：官方一手 + 荷比卢媒体 + 网通/安全媒体 + Google News 关键词搜索，另有智能家居、摄像头与扫地机器人（Tapo 品类）信源。Amazon 全球新闻与欧盟数字政策在后台给类别 broad-official，Wi-Fi Alliance 给 standards（见 industry/selection.ts）。",
   "sources": [
     {
       "id": "rss-wifi-alliance",
@@ -483,6 +483,153 @@
       "tags": [
         "聚合搜索",
         "政策"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-the-ambient",
+      "name": "The Ambient",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://www.the-ambient.com/feed",
+        "_aihot": {
+          "initialBackfillLimit": 8
+        }
+      },
+      "tier": "T2",
+      "owner_entity_id": null,
+      "participation_mode": "editorial",
+      "interval_minutes": 360,
+      "tags": [
+        "媒体",
+        "智能家居"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-matter-smarthome",
+      "name": "matter-smarthome",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://www.matter-smarthome.de/en/feed/",
+        "_aihot": {
+          "initialBackfillLimit": 8
+        }
+      },
+      "tier": "T2",
+      "owner_entity_id": null,
+      "participation_mode": "editorial",
+      "interval_minutes": 720,
+      "tags": [
+        "媒体",
+        "智能家居"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-fwd",
+      "name": "FWD",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://www.fwd.nl/feed/",
+        "_aihot": {
+          "initialBackfillLimit": 8
+        }
+      },
+      "tier": "T2",
+      "owner_entity_id": null,
+      "participation_mode": "editorial",
+      "interval_minutes": 240,
+      "tags": [
+        "媒体",
+        "荷兰"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "gn-cameras-nl",
+      "name": "Google News：摄像头与门铃（荷兰）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://news.google.com/rss/search?q=Tapo%20OR%20Ring%20OR%20Eufy%20OR%20Arlo%20OR%20Reolink%20%28beveiligingscamera%20OR%20deurbel%20OR%20camera%29&hl=nl&gl=NL&ceid=NL:nl",
+        "_aihot": {
+          "initialBackfillLimit": 8
+        }
+      },
+      "tier": "T2",
+      "owner_entity_id": null,
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "聚合搜索",
+        "智能家居"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "gn-cameras-en",
+      "name": "Google News：摄像头与门铃（英文）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://news.google.com/rss/search?q=%28Tapo%20OR%20Ring%20OR%20Eufy%20OR%20Arlo%20OR%20Reolink%20OR%20%22Nest%20Cam%22%29%20%28%22security%20camera%22%20OR%20doorbell%29&hl=en-GB&gl=GB&ceid=GB:en",
+        "_aihot": {
+          "initialBackfillLimit": 8
+        }
+      },
+      "tier": "T2",
+      "owner_entity_id": null,
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "聚合搜索",
+        "智能家居"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "gn-smart-home",
+      "name": "Google News：智能家居",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://news.google.com/rss/search?q=%22smart%20home%22%20%28Matter%20OR%20%22Philips%20Hue%22%20OR%20Aqara%20OR%20Tapo%20OR%20Kasa%20OR%20%22Home%20Assistant%22%29&hl=en-GB&gl=GB&ceid=GB:en",
+        "_aihot": {
+          "initialBackfillLimit": 8
+        }
+      },
+      "tier": "T2",
+      "owner_entity_id": null,
+      "participation_mode": "editorial",
+      "interval_minutes": 240,
+      "tags": [
+        "聚合搜索",
+        "智能家居"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "gn-robot-vacuums-nl",
+      "name": "Google News：扫地机器人（荷兰）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://news.google.com/rss/search?q=robotstofzuiger%20OR%20Roborock%20OR%20Dreame%20OR%20Ecovacs&hl=nl&gl=NL&ceid=NL:nl",
+        "_aihot": {
+          "initialBackfillLimit": 8
+        }
+      },
+      "tier": "T2",
+      "owner_entity_id": null,
+      "participation_mode": "editorial",
+      "interval_minutes": 360,
+      "tags": [
+        "聚合搜索",
+        "智能家居"
       ],
       "site_fulltext": false,
       "syndicate_fulltext": false

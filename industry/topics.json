@@ -22,7 +22,7 @@
       "name": "TP-Link",
       "group": "company",
       "entityId": "tp-link",
-      "definition": "TP-Link 及旗下 Deco、Archer、Tapo、Omada、Mercusys 的新品、评测、渠道动作，以及各地监管与舆情。"
+      "definition": "TP-Link 及旗下 Deco、Archer、Tapo、Kasa、VIGI、Omada、Mercusys 的新品、评测、渠道动作，以及各地监管与舆情。"
     },
     {
       "slug": "netgear",
@@ -75,6 +75,97 @@
       "group": "company",
       "entityId": "devolo",
       "definition": "devolo 的电力猫与 Mesh 产品，以及它在欧洲零售渠道的动作。"
+    },
+    {
+      "slug": "ring",
+      "name": "Ring",
+      "group": "company",
+      "entityId": "ring",
+      "definition": "Amazon 旗下 Ring（含 Blink）的门铃、摄像头新品、订阅服务与隐私争议。"
+    },
+    {
+      "slug": "eufy",
+      "name": "eufy / Anker",
+      "group": "company",
+      "entityId": "eufy",
+      "definition": "Anker 旗下 eufy 的安防摄像头、门铃、门锁与扫地机器人新品和价格。"
+    },
+    {
+      "slug": "arlo",
+      "name": "Arlo",
+      "group": "company",
+      "entityId": "arlo",
+      "definition": "Arlo 的摄像头产品、订阅模式与财报。"
+    },
+    {
+      "slug": "reolink",
+      "name": "Reolink",
+      "group": "company",
+      "entityId": "reolink",
+      "definition": "Reolink 的摄像头与门铃新品，以及在欧洲电商渠道的打法。"
+    },
+    {
+      "slug": "ezviz",
+      "name": "EZVIZ",
+      "group": "company",
+      "entityId": "ezviz",
+      "definition": "EZVIZ 的家用摄像头、门锁与欧洲渠道动作。"
+    },
+    {
+      "slug": "google-home",
+      "name": "Google Nest / Home",
+      "group": "company",
+      "entityId": "google-home",
+      "definition": "Google Nest 摄像头、门铃与 Google Home 平台的更新。"
+    },
+    {
+      "slug": "philips-hue",
+      "name": "Philips Hue / Signify",
+      "group": "company",
+      "entityId": "philips-hue",
+      "definition": "Signify 旗下 Philips Hue 与 WiZ 的智能照明、摄像头和生态更新。"
+    },
+    {
+      "slug": "aqara",
+      "name": "Aqara",
+      "group": "company",
+      "entityId": "aqara",
+      "definition": "Aqara 的传感器、中枢、门锁与摄像头新品，以及 Matter 支持进展。"
+    },
+    {
+      "slug": "ikea",
+      "name": "IKEA Smart Home",
+      "group": "company",
+      "entityId": "ikea",
+      "definition": "IKEA 的平价智能家居产品与 Matter 路线。"
+    },
+    {
+      "slug": "roborock",
+      "name": "Roborock",
+      "group": "company",
+      "entityId": "roborock",
+      "definition": "Roborock 的扫地机器人新品、价格与欧洲市场份额。"
+    },
+    {
+      "slug": "dreame",
+      "name": "Dreame",
+      "group": "company",
+      "entityId": "dreame",
+      "definition": "Dreame 的扫地机器人与清洁电器新品和促销。"
+    },
+    {
+      "slug": "ecovacs",
+      "name": "Ecovacs",
+      "group": "company",
+      "entityId": "ecovacs",
+      "definition": "Ecovacs Deebot 的新品、安全问题与渠道动作。"
+    },
+    {
+      "slug": "irobot",
+      "name": "iRobot",
+      "group": "company",
+      "entityId": "irobot",
+      "definition": "iRobot Roomba 的产品、经营状况与公司变化。"
     },
     {
       "slug": "qualcomm",
@@ -230,7 +321,7 @@
       "tags": [
         "智能家居"
       ],
-      "definition": "智能插座、灯泡、Matter 与智能家居生态。"
+      "definition": "智能插座、照明、传感器、中枢等智能家居产品与平台的新品、评测和生态变化。"
     },
     {
       "slug": "security-cameras",
@@ -240,6 +331,33 @@
         "安防摄像头"
       ],
       "definition": "家用安防摄像头与门铃的新品、评测与隐私问题。"
+    },
+    {
+      "slug": "doorbells-locks",
+      "name": "门铃与门锁",
+      "group": "field",
+      "tags": [
+        "门铃/门锁"
+      ],
+      "definition": "智能门铃、可视门铃与智能门锁的新品、评测与安装兼容问题。"
+    },
+    {
+      "slug": "robot-vacuums",
+      "name": "扫地机器人",
+      "group": "field",
+      "tags": [
+        "扫地机器人"
+      ],
+      "definition": "扫地与扫拖机器人的新品、价格战、评测和安全问题。"
+    },
+    {
+      "slug": "matter",
+      "name": "Matter 与互联",
+      "group": "field",
+      "tags": [
+        "Matter"
+      ],
+      "definition": "Matter、Thread 标准与各家生态（Apple Home、Google Home、Alexa、Home Assistant）的互通进展。"
     },
     {
       "slug": "chipsets",
