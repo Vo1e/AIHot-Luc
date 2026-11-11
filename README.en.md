@@ -176,16 +176,8 @@ Questions about deploying and using it go to [Q&A](https://github.com/KKKKhazix/
 
 For a bug or a concrete feature request, [open an issue](https://github.com/KKKKhazix/AIHOT/issues/new/choose). Before changing code, read the [contributing guide](CONTRIBUTING.md); report security vulnerabilities through the [private reporting channel](SECURITY.md).
 
-## Finally
-
-AIHOT was once just a tiny, tiny thought on one of countless late nights.
-
-I don't know what it will be turned into, or how far it will go. But that may be the most romantic thing about open source.
-
-The rest of the road is yours.
-
-<p align="right">— 数字生命卡兹克 (Khazix)</p>
-
 ## License
 
 The code is under the [MIT License](LICENSE). The AIHOT name and logo are not covered by the license. The fonts have their own licenses; see [NOTICE](NOTICE).
+
+Built on the open-source [AIHOT](https://github.com/KKKKhazix/AIHOT) by 数字生命卡兹克 (Khazix).
