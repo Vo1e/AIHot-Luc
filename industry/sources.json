@@ -363,7 +363,7 @@
     },
     {
       "id": "gn-competitors",
-      "name": "Google News：竞品",
+      "name": "Google News：其他网通品牌",
       "kind": "rss",
       "config": {
         "feedUrl": "https://news.google.com/rss/search?q=Netgear%20OR%20%22FRITZ%21Box%22%20OR%20AVM%20OR%20eero%20OR%20Linksys%20OR%20UniFi%20OR%20%22ASUS%20router%22%20OR%20devolo&hl=en-GB&gl=GB&ceid=GB:en",
@@ -377,7 +377,7 @@
       "interval_minutes": 180,
       "tags": [
         "聚合搜索",
-        "竞品"
+        "品牌"
       ],
       "site_fulltext": false,
       "syndicate_fulltext": false
