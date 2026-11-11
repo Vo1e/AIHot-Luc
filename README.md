@@ -18,6 +18,18 @@
   把信源换成你的，把精选标准换成你的 KnowHow，它就是你的行业热点站。
 </p>
 
+> [!NOTE]
+> **这是 Luc 的定制版：LucHOT —— 荷比卢家用网通与电商热点站。** 引擎来自上游 [AIHOT](https://github.com/KKKKhazix/AIHOT)，行业包已经换成：
+>
+> - **读者**：在荷比卢做家用网通产品（TP-Link 体系）的渠道与电商运营
+> - **六类**：产品与技术、渠道与电商、行业与竞品、政策与安全、实操、观点（`industry/taxonomy.ts`）
+> - **盯的对象**：TP-Link 及竞品（Netgear、ASUS、AVM/FRITZ!、eero、Linksys、Ubiquiti……）、Amazon NL/BE、bol、Coolblue、MediaMarkt、荷比卢运营商、Wi-Fi 芯片商（`industry/topics.json`）
+> - **23 个起步信源**：Wi-Fi Alliance、欧盟数字政策、About Amazon、Tweakers、Emerce、Twinkle、RetailDetail、Light Reading、安全媒体和 8 个 Google News 关键词搜索（`industry/sources.json`）
+> - **评分标准**：荷比卢与欧盟优先，竞品与渠道变化、Amazon 规则与费用、设备法规和漏洞正常评价；导购、单品折扣、泛科技新闻压低（`industry/prompts/selection-score.md`）
+> - **出刊**：日报北京时间 14:00（阿姆斯特丹冬令时 07:00），周报周一 15:00，月报每月 1 日 15:30（`site/site.ts`）
+>
+> 门槛还是上游 AI 站的数字，攒够 100–200 条自己标注的样本后按 [精选与校准](docs/selection.md) 重新校准。下文是上游的原始说明。
+
 <p align="center">
   <b>简体中文</b> · <a href="README.en.md">English</a>
 </p>
