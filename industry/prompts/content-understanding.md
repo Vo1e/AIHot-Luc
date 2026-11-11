@@ -37,8 +37,8 @@
 
 其后可选 0–5 个适用标签，并且只能来自以下两个白名单：
 
-- 主题：Wi-Fi 7、Wi-Fi 8、Mesh、路由器、交换机/商用、4G/5G、宽带/光纤、智能家居、安防摄像头、芯片、Amazon 运营、Amazon 广告、零售渠道、运营商、大促、AI 工具、供应链/关税
-- 实体：TP-Link、Netgear、ASUS、AVM、eero、Amazon、bol、Coolblue、MediaMarkt
+- 主题：Wi-Fi 7、Wi-Fi 8、Mesh、路由器、交换机/商用、4G/5G、宽带/光纤、智能家居、安防摄像头、门铃/门锁、扫地机器人、Matter、芯片、Amazon 运营、Amazon 广告、零售渠道、运营商、大促、AI 工具、供应链/关税
+- 实体：TP-Link、Netgear、ASUS、AVM、eero、Ring、eufy、Philips Hue、Amazon、bol、Coolblue、MediaMarkt
 
 正文中即使明确出现了 Linksys、Qualcomm、KPN 等其他实体，也不要把它们放进 `tags`。不要创造白名单之外的标签。没有适用的主题或实体时，只返回第一个分类标签；例如欧盟电商平台监管的新闻，不需要强行归到“路由器”或“Mesh”。
 

@@ -1,10 +1,11 @@
-【网通与电商领域翻译规则 — 本平台内容是家用网络设备与欧洲零售/电商渠道，严格遵守】
+【网通与电商领域翻译规则 — 本平台内容是家用网络设备、智能家居与欧洲零售/电商渠道，严格遵守】
 
 1. 歧义默认值：以下词在中文有其他含义，**一律按网通与电商含义翻译**：
    - Mesh = Mesh 组网（保留英文；不译“网格”“网眼”）
    - Router = 路由器；Gateway = 网关（运营商设备时写“运营商网关”）；Modem = 调制解调器 / 光猫（按原文设备类型）
    - Access Point / AP = 接入点（AP 可保留）；Extender / Repeater = 信号扩展器
    - Backhaul = 回程；Tri-band / Quad-band = 三频 / 四频；MLO = 多链路操作（MLO 可保留）
+   - Doorbell / Video doorbell = 门铃 / 可视门铃；Smart lock = 智能门锁；Smart plug = 智能插座；Hub / Bridge = 中枢 / 网桥；Robot vacuum = 扫地机器人；Subscription = 订阅；Local storage = 本地存储
    - Powerline = 电力猫；CPE = 保留 CPE（固定无线接入终端）；FWA = 固定无线接入
    - Firmware = 固件；Patch = 补丁；Vulnerability / CVE = 漏洞（CVE 编号原样保留）
    - Listing = 商品详情页（Listing 可保留）；Buy Box = 购物车（Buy Box 可保留）；Deal / Lightning Deal = 促销 / 秒杀
@@ -15,7 +16,8 @@
    - Retailer = 零售商；Distributor = 分销商；Operator / ISP / Telco = 运营商
 
 2. 以下专有名词**一律保留英文原文**，不翻译不加中文括注：
-   - 品牌：TP-Link / Deco / Archer / Tapo / Omada / Mercusys / Netgear / Orbi / Nighthawk / ASUS / ZenWiFi / ROG / AVM / FRITZ!Box / eero / Linksys / Velop / Ubiquiti / UniFi / devolo / Zyxel / D-Link / Tenda / Starlink
+   - 品牌：TP-Link / Deco / Archer / Tapo / Omada / Mercusys / Netgear / Orbi / Nighthawk / ASUS / ZenWiFi / ROG / AVM / FRITZ!Box / eero / Linksys / Velop / Ubiquiti / UniFi / devolo / Zyxel / D-Link / Tenda / Starlink / Kasa / VIGI / Ring / Blink / eufy / Anker / Arlo / Reolink / EZVIZ / Nest / Philips Hue / Signify / WiZ / Aqara / IKEA / Roborock / Dreame / Ecovacs / iRobot / Roomba
+   - 生态与标准：Matter / Thread / Zigbee / HomeKit / Apple Home / Google Home / Alexa / Home Assistant / ONVIF / RTSP
    - 芯片与平台：Qualcomm / MediaTek / Filogic / Broadcom / Networking Pro
    - 渠道与平台：Amazon / Amazon.nl / Amazon.com.be / Vendor Central / Seller Central / Amazon Ads / bol / Coolblue / MediaMarkt / Ceconomy / Alternate / Azerty / Megekko / Vanden Borre / Krëfel
    - 运营商：KPN / Odido / VodafoneZiggo / Ziggo / Proximus / Telenet / Orange Belgium / DELTA
