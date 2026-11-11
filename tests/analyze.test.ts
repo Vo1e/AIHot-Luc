@@ -32,7 +32,8 @@ const T1 = selectionThreshold({ tier: "T1" })!;
 const T2 = selectionThreshold({ tier: "T2" })!;
 const FLOOR = UNDERSTAND_FLOOR;
 // A pack class whose floor lies between the official and the media threshold: it raises the first, not the second.
-const [CLASS, CLASS_FLOOR] = Object.entries(SELECTION.classes).map(([key, c]) => [key, c.threshold] as const).find(([, t]) => t > T1 && t < T2) ?? [undefined, NaN];
+const CLASSES = Object.entries(SELECTION.classes).map(([key, c]) => [key, c.threshold] as const);
+const [CLASS, CLASS_FLOOR] = CLASSES.find(([, t]) => t > T1 && t < T2) ?? CLASSES.find(([, t]) => t > T1) ?? [undefined, NaN];
 const scoreAnswers: Record<string, number[]> = {
   CLEAR: [T1 + 3, T1 - 1], RESCUE: [FLOOR + 1, FLOOR], LOW: [FLOOR, FLOOR - 1], THIN: [T1, T1], SENSITIVE: [T1, T1], 推文: [FLOOR, FLOOR],
   BARE: [FLOOR - 2, FLOOR - 4], VAGUE: [T1, T1 + 2], WORDY: [T1, T1], REFUSAL: [T1, T1], RENUMBER: [T1, T1], UNMENDED: [T1, T1],
@@ -258,10 +259,10 @@ test("guards: a company the input does not name is not written in; long summarie
 });
 
 test("a source class raises its tier's threshold to the class floor and never lowers one", () => {
-  assert.ok(CLASS && CLASS_FLOOR - 1 >= T1, "the cases need a pack class whose floor lies above the official threshold and below the media one");
+  assert.ok(CLASS && CLASS_FLOOR - 1 >= T1, "the cases need a pack class whose floor lies above the official threshold");
   assert.equal(selectionThreshold({ tier: "T1", selectionClass: null }), T1);
   assert.equal(selectionThreshold({ tier: "T1", selectionClass: CLASS }), CLASS_FLOOR);
-  assert.equal(selectionThreshold({ tier: "T2", selectionClass: CLASS }), T2, "a media source keeps its own, higher threshold");
+  assert.equal(selectionThreshold({ tier: "T2", selectionClass: CLASS }), Math.max(T2, CLASS_FLOOR), "a media source keeps its own threshold when that is higher");
   assert.equal(selectionThreshold({ tier: "EXCLUDE_MP", selectionClass: CLASS }), null, "a tier without a threshold stays out of 精选");
 });
 
