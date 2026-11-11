@@ -23,8 +23,8 @@
 >
 > - **读者**：在荷比卢做家用网通产品的品牌方渠道与电商运营
 > - **六类**：产品与技术、渠道与电商、行业与竞品、政策与安全、实操、观点（`industry/taxonomy.ts`）
-> - **盯的对象**：主要网通品牌（TP-Link、Netgear、ASUS、AVM/FRITZ!、eero、Linksys、Ubiquiti……）、Amazon NL/BE、bol、Coolblue、MediaMarkt、荷比卢运营商、Wi-Fi 芯片商（`industry/topics.json`）
-> - **23 个起步信源**：Wi-Fi Alliance、欧盟数字政策、About Amazon、Tweakers、Emerce、Twinkle、RetailDetail、Light Reading、安全媒体和 8 个 Google News 关键词搜索（`industry/sources.json`）
+> - **盯的对象**：主要网通品牌（TP-Link、Netgear、ASUS、AVM/FRITZ!、eero、Linksys、Ubiquiti……）、智能家居与安防品牌（Tapo、Ring、eufy、Arlo、Reolink、Philips Hue、Aqara、Roborock……）、Amazon NL/BE、bol、Coolblue、MediaMarkt、荷比卢运营商、Wi-Fi 芯片商（`industry/topics.json`）
+> - **30 个起步信源**：Wi-Fi Alliance、欧盟数字政策、About Amazon、Tweakers、Emerce、Twinkle、RetailDetail、Light Reading、安全媒体、智能家居媒体和 12 个 Google News 关键词搜索（`industry/sources.json`）
 > - **评分标准**：荷比卢与欧盟优先，品牌与渠道变化、Amazon 规则与费用、设备法规和漏洞正常评价；导购、单品折扣、泛科技新闻压低（`industry/prompts/selection-score.md`）
 > - **出刊**：日报北京时间 14:00（阿姆斯特丹冬令时 07:00），周报周一 15:00，月报每月 1 日 15:30（`site/site.ts`）
 >
