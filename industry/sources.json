@@ -363,10 +363,10 @@
     },
     {
       "id": "gn-competitors",
-      "name": "Google News：其他网通品牌",
+      "name": "Google News：其他网通品牌（经营动作）",
       "kind": "rss",
       "config": {
-        "feedUrl": "https://news.google.com/rss/search?q=Netgear%20OR%20%22FRITZ%21Box%22%20OR%20AVM%20OR%20eero%20OR%20Linksys%20OR%20UniFi%20OR%20%22ASUS%20router%22%20OR%20devolo&hl=en-GB&gl=GB&ceid=GB:en",
+        "feedUrl": "https://news.google.com/rss/search?q=(Netgear%20OR%20%22FRITZ!Box%22%20OR%20AVM%20OR%20eero%20OR%20Linksys%20OR%20UniFi%20OR%20Ubiquiti%20OR%20devolo%20OR%20%22ASUS%20router%22)%20(Europe%20OR%20EU%20OR%20earnings%20OR%20revenue%20OR%20acquisition%20OR%20acquires%20OR%20CEO%20OR%20layoffs%20OR%20tariff%20OR%20ban)%20when%3A14d&hl=en-GB&gl=GB&ceid=GB:en",
         "_aihot": {
           "initialBackfillLimit": 8
         }
@@ -429,7 +429,7 @@
       "name": "Google News：荷比卢零售",
       "kind": "rss",
       "config": {
-        "feedUrl": "https://news.google.com/rss/search?q=Coolblue%20OR%20%22bol.com%22%20OR%20MediaMarkt%20OR%20%22Amazon.nl%22%20OR%20%22Amazon.com.be%22&hl=nl&gl=NL&ceid=NL:nl",
+        "feedUrl": "https://news.google.com/rss/search?q=Coolblue%20OR%20%22bol.com%22%20OR%20MediaMarkt%20OR%20%22Amazon.nl%22%20OR%20%22Amazon.com.be%22%20OR%20Kr%C3%ABfel%20OR%20%22Vanden%20Borre%22&hl=nl&gl=NL&ceid=NL:nl",
         "_aihot": {
           "initialBackfillLimit": 8
         }
@@ -450,7 +450,7 @@
       "name": "Google News：荷比卢运营商",
       "kind": "rss",
       "config": {
-        "feedUrl": "https://news.google.com/rss/search?q=%28KPN%20OR%20Odido%20OR%20VodafoneZiggo%20OR%20Ziggo%20OR%20Proximus%20OR%20Telenet%29%20%28router%20OR%20wifi%20OR%20modem%20OR%20glasvezel%29&hl=nl&gl=NL&ceid=NL:nl",
+        "feedUrl": "https://news.google.com/rss/search?q=(KPN%20OR%20Odido%20OR%20VodafoneZiggo%20OR%20Ziggo%20OR%20DIGI%20OR%20Delta%20OR%20Proximus%20OR%20Telenet%20OR%20%22Orange%20Belgium%22)%20(router%20OR%20wifi%20OR%20modem%20OR%20glasvezel)&hl=nl&gl=NL&ceid=NL:nl",
         "_aihot": {
           "initialBackfillLimit": 8
         }
@@ -590,7 +590,8 @@
         "智能家居"
       ],
       "site_fulltext": false,
-      "syndicate_fulltext": false
+      "syndicate_fulltext": false,
+      "enabled": false
     },
     {
       "id": "gn-smart-home",
@@ -630,6 +631,177 @@
       "tags": [
         "聚合搜索",
         "智能家居"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-retaildetail-be-fr",
+      "name": "RetailDetail BE（法语）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://www.retaildetail.be/fr/rss",
+        "_aihot": {
+          "initialBackfillLimit": 8
+        }
+      },
+      "tier": "T2",
+      "owner_entity_id": null,
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "媒体",
+        "比利时",
+        "零售"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-trends-tendances",
+      "name": "Trends-Tendances",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://datanews.levif.be/feed/",
+        "_aihot": {
+          "initialBackfillLimit": 8
+        }
+      },
+      "tier": "T2",
+      "owner_entity_id": null,
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "媒体",
+        "比利时"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-androidplanet",
+      "name": "Android Planet",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://www.androidplanet.nl/feed/",
+        "_aihot": {
+          "initialBackfillLimit": 8
+        }
+      },
+      "tier": "T2",
+      "owner_entity_id": null,
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "媒体",
+        "荷兰"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "gn-competitors-nl",
+      "name": "Google News：其他网通品牌（荷语）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://news.google.com/rss/search?q=(Netgear%20OR%20%22FRITZ!Box%22%20OR%20AVM%20OR%20eero%20OR%20Linksys%20OR%20devolo%20OR%20%22ASUS%20router%22%20OR%20Ubiquiti)%20when%3A14d&hl=nl&gl=NL&ceid=NL:nl",
+        "_aihot": {
+          "initialBackfillLimit": 8
+        }
+      },
+      "tier": "T2",
+      "owner_entity_id": null,
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "聚合搜索",
+        "竞品"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "gn-be-retail-fr",
+      "name": "Google News：比利时零售（法语）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://news.google.com/rss/search?q=(Kr%C3%ABfel%20OR%20%22Vanden%20Borre%22%20OR%20%22bol.com%22%20OR%20MediaMarkt%20OR%20Coolblue%20OR%20Amazon)%20Belgique%20when%3A14d&hl=fr&gl=BE&ceid=BE:fr",
+        "_aihot": {
+          "initialBackfillLimit": 8
+        }
+      },
+      "tier": "T2",
+      "owner_entity_id": null,
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "聚合搜索",
+        "比利时",
+        "零售"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "gn-be-isp-fr",
+      "name": "Google News：比利时运营商（法语）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://news.google.com/rss/search?q=(Proximus%20OR%20Telenet%20OR%20%22Orange%20Belgique%22%20OR%20DIGI%20OR%20VOO%20OR%20Scarlet)%20(routeur%20OR%20wifi%20OR%20modem%20OR%20fibre)%20when%3A14d&hl=fr&gl=BE&ceid=BE:fr",
+        "_aihot": {
+          "initialBackfillLimit": 8
+        }
+      },
+      "tier": "T2",
+      "owner_entity_id": null,
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "聚合搜索",
+        "比利时",
+        "运营商"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "gn-consumer-tests",
+      "name": "Google News：荷比消费者测评",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://news.google.com/rss/search?q=(Consumentenbond%20OR%20%22Test-Aankoop%22%20OR%20%22Test-Achats%22)%20(router%20OR%20wifi%20OR%20mesh%20OR%20camera%20OR%20deurbel%20OR%20robotstofzuiger%20OR%20%22slimme%22)%20when%3A30d&hl=nl&gl=NL&ceid=NL:nl",
+        "_aihot": {
+          "initialBackfillLimit": 8
+        }
+      },
+      "tier": "T2",
+      "owner_entity_id": null,
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "聚合搜索",
+        "测评"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "gn-bnl-regulators",
+      "name": "Google News：荷比通信监管",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://news.google.com/rss/search?q=(ACM%20OR%20%22Rijksinspectie%20Digitale%20Infrastructuur%22%20OR%20RDI%20OR%20BIPT%20OR%20IBPT)%20(telecom%20OR%20router%20OR%20wifi%20OR%20modem%20OR%20glasvezel%20OR%20internet%20OR%20apparaten)%20when%3A30d&hl=nl&gl=NL&ceid=NL:nl",
+        "_aihot": {
+          "initialBackfillLimit": 8
+        }
+      },
+      "tier": "T2",
+      "owner_entity_id": null,
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "聚合搜索",
+        "监管"
       ],
       "site_fulltext": false,
       "syndicate_fulltext": false
